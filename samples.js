@@ -14,6 +14,9 @@ function cryptoHash(algorithm) {
 function cryptoHmac(algorithm) {
     return crypto.createHmac(algorithm, salt).update(token).digest('hex');   
 }
+function cryptoHmacTokenSalt(algorithm) {
+    return crypto.createHmac(algorithm, salt + token).update(token).digest('hex');   
+}
 function cryptoHmacHashSalt(algorithm) {
     return crypto.createHmac(algorithm, hashSalt()).update(token).digest('hex');   
 }
@@ -30,6 +33,7 @@ function cryptoPbkdf2HashSalt(algorithm) {
 module.exports = {
     cryptoHash,
     cryptoHmac,
+    cryptoHmacTokenSalt,
     cryptoHmacHashSalt,
     bcryptHash,
     cryptoPbkdf2,
@@ -49,6 +53,10 @@ console.log(
     "[crypto] hmac (sha1 with global salt) {length: " + cryptoHmac('sha1').length + " chars}: \n" + cryptoHmac('sha1') + "\n" +
     "-----------------------------\n" +
     "[crypto] hmac (sha512 with global salt) {length: " + cryptoHmac('sha512').length + " chars}: \n" + cryptoHmac('sha512') + "\n" +
+    "-----------------------------\n" +
+    "[crypto] hmac (sha1 with token salt) {length: " + cryptoHmacTokenSalt('sha1').length + " chars}: \n" + cryptoHmacTokenSalt('sha1') + "\n" +
+    "-----------------------------\n" +
+    "[crypto] hmac (sha512 with token salt) {length: " + cryptoHmacTokenSalt('sha512').length + " chars}: \n" + cryptoHmacTokenSalt('sha512') + "\n" + 
     "-----------------------------\n" +
     "[crypto] hmac (sha1 with hashed salt) {length: " + cryptoHmacHashSalt('sha1').length + " chars}: \n" + cryptoHmacHashSalt('sha1') + "\n" +
     "-----------------------------\n" +

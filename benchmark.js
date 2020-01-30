@@ -17,6 +17,12 @@ suite
 .add('[crypro] Hmac (sha512 with global salt)', function() {
     run.cryptoHmac('sha512')
 })
+.add('[crypro] Hmac (sha1 with token salt)', function() {
+    run.cryptoHmacTokenSalt('sha1')
+})
+.add('[crypro] Hmac (sha512 with tokent salt)', function() {
+    run.cryptoHmacTokenSalt('sha512')
+})
 .add('[crypro] Hmac (sha1 with hashed salt)', function() {
     run.cryptoHmacHashSalt('sha1')
 })
